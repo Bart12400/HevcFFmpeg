@@ -19,14 +19,16 @@ jobs:
         distribution: 'temurin'
         cache: gradle
 
-    - name: Accept Android SDK Licenses
-      run: yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
-
     - name: Make gradlew executable
       run: chmod +x gradlew
 
     - name: Build with Gradle
-      run: ./gradlew assembleDebug --stacktrace --full-stacktrace
+      run: |
+        ./gradlew assembleDebug --no-daemon > build.log 2>&1 || (
+          echo "=== KLUCZOWY BŁĄD COMPILACJI ==="
+          grep -iE "error:|exception|failed|e:" build.log | tail -n 25
+          exit 1
+        )
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
