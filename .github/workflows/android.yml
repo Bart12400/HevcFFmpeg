@@ -19,11 +19,14 @@ jobs:
         distribution: 'temurin'
         cache: gradle
 
+    - name: Accept Android SDK Licenses
+      run: yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
+
     - name: Make gradlew executable
       run: chmod +x gradlew
 
-    - name: Build with Gradle Wrapper
-      run: ./gradlew assembleDebug --stacktrace
+    - name: Build with Gradle
+      run: ./gradlew assembleDebug --stacktrace --full-stacktrace
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
