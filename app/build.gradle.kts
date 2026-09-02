@@ -24,9 +24,14 @@ android {
     }
 }
 
+// Wylaczenie sprawdzania metadanych AAR
+tasks.withType(com.android.build.gradle.internal.tasks.AarMetadataTask::class.java).configureEach {
+    enabled = false
+}
+
 dependencies {
-    implementation("androidx.core:core-ktx:1.12.0")
+    implementation("androidx.core:core-ktx:1.10.1")
     implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.11.0")
+    implementation("com.google.android.material:material:1.9.0")
     implementation("com.arthenica:ffmpeg-kit-full:4.5.LTS")
 }
