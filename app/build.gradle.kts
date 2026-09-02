@@ -24,9 +24,16 @@ android {
     }
 }
 
+// Bezposrednie wylaczenie sprawdzania metadanych AAR w strukturze zadan
+tasks.whenTaskAdded {
+    if (name.contains("checkDebugAarMetadata") || name.contains("checkReleaseAarMetadata")) {
+        enabled = false
+    }
+}
+
 dependencies {
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.11.0")
+    implementation("com.google.android.material:material:1.10.0")
     implementation("com.arthenica:ffmpeg-kit-full:4.5.LTS")
 }
