@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace = "com.robert.hevcffmpeg"
-    compileSdk = 34
+    compileSdk = 33
 
     defaultConfig {
         applicationId = "com.robert.hevcffmpeg"
         minSdk = 26
-        targetSdk = 34
+        targetSdk = 33
         versionCode = 1
         versionName = "1.0"
     }
@@ -24,16 +24,9 @@ android {
     }
 }
 
-// Bezposrednie wylaczenie sprawdzania metadanych AAR w strukturze zadan
-tasks.whenTaskAdded {
-    if (name.contains("checkDebugAarMetadata") || name.contains("checkReleaseAarMetadata")) {
-        enabled = false
-    }
-}
-
 dependencies {
-    implementation("androidx.core:core-ktx:1.12.0")
+    implementation("androidx.core:core-ktx:1.10.1")
     implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.10.0")
+    implementation("com.google.android.material:material:1.9.0")
     implementation("com.arthenica:ffmpeg-kit-full:4.5.LTS")
 }
